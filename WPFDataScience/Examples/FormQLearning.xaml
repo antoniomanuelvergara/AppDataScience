@@ -1,0 +1,28 @@
+﻿<Window x:Class="WPFDataScience.Examples.FormQLearning"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFDataScience.Examples"
+        xmlns:local2="clr-namespace:WPFDataScience.UserControls"
+        mc:Ignorable="d"
+        Title="WinTest" Height="700" Width="1200">
+    <Grid x:Name="cuadro" Background="AntiqueWhite">
+        <Button Content="Explorar" HorizontalAlignment="Left" Margin="1011,10,0,0" VerticalAlignment="Top" Width="148" Height="56" Click="Button_Click"/>
+        <Button Content="QLearning" HorizontalAlignment="Left" Margin="833,93,0,0" VerticalAlignment="Top" Width="148" Height="56" Click="Button_Click_3"/>
+        <Button Content="Crear Tablero" HorizontalAlignment="Left" Margin="833,10,0,0" VerticalAlignment="Top" Width="148" Height="56" Click="Button_Click_1"/>
+        <Button Content="Explorar Rapido" HorizontalAlignment="Left" Margin="1011,93,0,0" VerticalAlignment="Top" Width="148" Height="56" Click="Button_Click_2"/>
+        <DataGrid x:Name="DGResult" HorizontalAlignment="Left" ItemsSource="{Binding qLearningMVVM.TablaQ}" Height="164" Margin="713,438,0,0" VerticalAlignment="Top" Width="446" Background="WhiteSmoke"/>
+        <DataGrid x:Name="DGExplorer" HorizontalAlignment="Left" ItemsSource="{Binding qLearningMVVM.TablaExploracion}" Height="164" Margin="713,237,0,0" VerticalAlignment="Top" Width="446" Background="WhiteSmoke"/>
+        <ComboBox x:Name="CBFilas" HorizontalAlignment="Left" Height="29" Margin="732,10,0,0" VerticalAlignment="Top" Width="65"/>
+        <ComboBox x:Name="CBColumnas" HorizontalAlignment="Left" Height="29" Margin="732,44,0,0" VerticalAlignment="Top" Width="65"/>
+        <Label Content="Filas" HorizontalAlignment="Left" Height="29" Margin="668,10,0,0" VerticalAlignment="Top" Width="49"/>
+        <Label Content="Columnas" HorizontalAlignment="Left" Height="29" Margin="668,42,0,0" VerticalAlignment="Top" Width="68"/>
+        <Label Content="Alfa" HorizontalAlignment="Left" Margin="797,170,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="833,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Gamma" HorizontalAlignment="Left" Margin="973,170,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="1028,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+
+    </Grid>
+</Window>

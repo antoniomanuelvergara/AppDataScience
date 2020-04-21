@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="WPFDataScience.UserControls.Grafico"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFDataScience.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600" >
+    <Grid>
+        
+        <Canvas x:Name="graph" Background="LightSkyBlue" HorizontalAlignment="Left" Height="600"  VerticalAlignment="Top" Width="600">
+          
+        </Canvas>
+        <Line X1="50" Y1="50" X2="50" Y2="550" StrokeThickness="0.5"   Stroke="blue"  Canvas.Left="100" />
+
+        <Line X1="100" Y1="50" X2="100" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="150" Y1="50" X2="150" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="200" Y1="50" X2="200" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="250" Y1="50" X2="250" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="300" Y1="50" X2="300" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="350" Y1="50" X2="350" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="400" Y1="50" X2="400" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="450" Y1="50" X2="450" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="500" Y1="50" X2="500" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="550" Y1="50" X2="550" Y2="560" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="600" Y1="50" X2="600" Y2="660" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+
+
+        <Line X1="50" Y1="550" X2="550" Y2="550" StrokeThickness="0.5"   Stroke="blue"  Canvas.Left="100" />
+
+        <Line X1="40" Y1="500" X2="550" Y2="500" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="450" X2="550" Y2="450" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="400" X2="550" Y2="400" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="350" X2="550" Y2="350" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="300" X2="550" Y2="300" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="250" X2="550" Y2="250" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="200" X2="550" Y2="200" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="150" X2="550" Y2="150" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="100" X2="550" Y2="100" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+        <Line X1="40" Y1="50" X2="550" Y2="50" StrokeThickness="0.1"   Stroke="blue"  Canvas.Left="100" />
+
+        <Label Content="0"  HorizontalAlignment="Left" Margin="42,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="0.1"  HorizontalAlignment="Left" Margin="87,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="0.2"  HorizontalAlignment="Left" Margin="137,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="0.3"  HorizontalAlignment="Left" Margin="189,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="0.4"  HorizontalAlignment="Left" Margin="236,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="0.5"  HorizontalAlignment="Left" Margin="288,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="0.6"  HorizontalAlignment="Left" Margin="338,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="0.7"  HorizontalAlignment="Left" Margin="387,554,0,0" VerticalAlignment="Top" />
+        <Label Content="0.8"  HorizontalAlignment="Left" Margin="435,554,0,0" VerticalAlignment="Top" />
+        <Label Content="0.9"  HorizontalAlignment="Left" Margin="486,554,0,0" VerticalAlignment="Top"/>
+        <Label Content="1"  HorizontalAlignment="Left" Margin="542,554,0,0" VerticalAlignment="Top" />
+        
+        <Label Content="0.1"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,487,0,0"/>
+        <Label Content="0.2"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,436,0,0"/>
+        <Label Content="0.3"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,388,0,0"/>
+        <Label Content="0.4"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,338,0,0"/>
+        <Label Content="0.5"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,289,0,0"/>
+        <Label Content="0.6"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,236,0,0"/>
+        <Label Content="0.7"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,188,0,0"/>
+        <Label Content="0.8"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,137,0,0"/>
+        <Label Content="0.9"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,86,0,0"/>
+        <Label Content="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="25" Canvas.Top="490" Margin="16,36,0,0"/>
+        
+    </Grid>
+</UserControl>

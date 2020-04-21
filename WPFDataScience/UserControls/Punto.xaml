@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="WPFDataScience.UserControls.Punto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFDataScience.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="10" d:DesignWidth="10">
+    <Grid>
+        <Ellipse x:Name="pto" Fill="Red" Height="10" Stroke="Black" VerticalAlignment="Top"  HorizontalAlignment="Left" Width="10" MouseEnter="pto_MouseEnter" MouseLeave="pto_MouseLeave"/>
+        
+        
+        <Rectangle  x:Name="Nota" HorizontalAlignment="Left" Height="57" Margin="8,8,-68,-55" Stroke="Black" VerticalAlignment="Top" Width="70">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFF4F4F5" Opacity="0.5"/>
+
+            </Rectangle.Fill>
+            
+        </Rectangle>
+
+        <Ellipse x:Name="area" Height="200" Width="200"  Stroke="Gray" RenderTransformOrigin="0.25,0.255" Margin="-95"  >
+
+        </Ellipse>
+        <Label x:Name="LbCategoria" Content="c"  FontSize="12" HorizontalAlignment="Left" Height="29" Margin="14,2,-67,-21" VerticalAlignment="Top" Width="63"/>
+
+        <Label x:Name="LbCoordX" Content="x"  FontSize="12" HorizontalAlignment="Left" Height="25" Margin="14,13,-60,-28" VerticalAlignment="Top" Width="56"/>
+
+        <Label x:Name="LbCoordY" Content="y"  FontSize="12" HorizontalAlignment="Left" Height="27" Margin="14,25,-67,-42" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="LbId" Content="Id"  FontSize="12" HorizontalAlignment="Left" Height="27" Margin="14,38,-67,-55" VerticalAlignment="Top" Width="63"/>
+
+    </Grid>
+</UserControl>
