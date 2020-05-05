@@ -42,6 +42,33 @@
   <ItemGroup>
     <Compile Include="AprendizajeSupervisado\KNearestNeighbours.cs" />
     <Compile Include="Busquedas\BusquedaProfundidadRecursiva.cs" />
+    <Compile Include="NeuronalNetwork\ControllerNNBase.cs" />
+    <Compile Include="NeuronalNetwork\Enum\EnumLayerType.cs" />
+    <Compile Include="NeuronalNetwork\Enum\EnumLearningType.cs" />
+    <Compile Include="NeuronalNetwork\Functions\ActivationFunction.cs" />
+    <Compile Include="NeuronalNetwork\Functions\TransferFunction.cs" />
+    <Compile Include="NeuronalNetwork\Graph\Arc.cs" />
+    <Compile Include="NeuronalNetwork\Graph\Graph.cs" />
+    <Compile Include="NeuronalNetwork\Graph\Node.cs" />
+    <Compile Include="NeuronalNetwork\Graph\NodeList.cs" />
+    <Compile Include="NeuronalNetwork\Helpers\Result.cs" />
+    <Compile Include="NeuronalNetwork\Layers\Layer.cs" />
+    <Compile Include="NeuronalNetwork\Models\Error.cs" />
+    <Compile Include="NeuronalNetwork\Models\Iterations.cs" />
+    <Compile Include="NeuronalNetwork\Models\LearningRate.cs" />
+    <Compile Include="NeuronalNetwork\Networks\BackPropagation.cs" />
+    <Compile Include="NeuronalNetwork\ControllerNeuronalNetwork.cs" />
+    <Compile Include="NeuronalNetwork\Enum\EnumNeuronState.cs" />
+    <Compile Include="NeuronalNetwork\Enum\EnumNeuronType.cs" />
+    <Compile Include="NeuronalNetwork\Neurons\Neuron.cs" />
+    <Compile Include="NeuronalNetwork\Networks\NeuronalNetwork.cs" />
+    <Compile Include="NeuronalNetwork\Neurons\NeuronBase.cs" />
+    <Compile Include="NeuronalNetwork\Repository\IActivationFunction.cs" />
+    <Compile Include="NeuronalNetwork\Repository\IControllerNNBase.cs" />
+    <Compile Include="NeuronalNetwork\Repository\ILayer.cs" />
+    <Compile Include="NeuronalNetwork\Repository\INeuron.cs" />
+    <Compile Include="NeuronalNetwork\Repository\INeuronalNetwork.cs" />
+    <Compile Include="NeuronalNetwork\Repository\ITransferFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QLearning\QLearning.cs" />
   </ItemGroup>
