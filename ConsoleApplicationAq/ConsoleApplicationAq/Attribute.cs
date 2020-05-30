@@ -11,7 +11,8 @@ namespace ConsoleApplicationAq
         public string Name { get; set; }
         public string Value { get; set; }
         public int Cost { get; set; } = 1;
-        public int State { get; set; } = 1;
+        //ponemos esto para poder desactivar en el excel las columnas que consideremos y no entren en la clasificacion
+        public int State { get; set; } = 1; 
     }
 }
 

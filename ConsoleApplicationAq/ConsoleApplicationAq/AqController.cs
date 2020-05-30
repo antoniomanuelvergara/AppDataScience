@@ -22,8 +22,8 @@ namespace ConsoleApplicationAq
 
         public Recubrimiento Start()
         {
-            LEF lef = new LEF();
-            return Estrella(data.Positivos, data.Negativos, lef);
+            LEF lef = new LEF(1,3,2);
+            return Estrella(lef);
 
         }
 
@@ -37,23 +37,28 @@ namespace ConsoleApplicationAq
         }
 
 
-        public Recubrimiento Estrella(Dictionary<int,RowData> positivos, Dictionary<int, RowData> negativos,LEF lef)
+        public Recubrimiento Estrella(LEF lef)
         {
             //creamos un recubrimiento de reglas
             Recubrimiento rules = new Recubrimiento();
             //int contador = 0;
 
-            //while(positivos.Count>0)
+            while(data.Positivos.Count>0)
             //
-            foreach (KeyValuePair<int, RowData> semilla in data.Positivos)
+            //foreach (KeyValuePair<int, RowData> semilla in data.Positivos)
             {
-                //cogemos el primero de los ejemplos positivos
-                //RowData semilla = positivos[1];
+                //siempre cogemos el que esta en esa posicion
+                var semilla = data.Positivos.First();
                 //realizamos una llamada al procedimiento Aq que hemos llamado INDUCE,
-                Estrella estrella = Induce(semilla.Value, negativos);
-                Complex complexSelected = ElegirComplejo(estrella, positivos, negativos, lef);
-                rules.Complexes.Add(complexSelected);
-                //por ultimo quitamos de los positivos los ejemplos cubiertos por P, complejo.
+                Estrella estrella = Induce(semilla.Value, data.Negativos);
+                Complex complexSelected = ElegirComplejo(estrella, data.Positivos, data.Negativos, lef);
+                if (complexSelected != null)
+                {
+                    rules.Complexes.Add(complexSelected);
+                    //por ultimo quitamos de los positivos los ejemplos cubiertos por P, complejo.
+                    DeletePositivesCubiertos(complexSelected);
+                }
+               
                 //contador++;
             }
             //}
@@ -61,13 +66,62 @@ namespace ConsoleApplicationAq
             return rules;
         }
 
+        private void DeletePositivesCubiertos(Complex complexSelected)
+        {
+            var PositivosCopy =  data.Positivos.ToDictionary(entry => entry.Key,entry => entry.Value);
+
+            foreach (KeyValuePair <int, RowData> positivo in data.Positivos)
+            {
+                if (DescribeEjemploPositivo(complexSelected, positivo.Value)==1)
+                {
+                    PositivosCopy.Remove(positivo.Key);
+                }
+
+            }
+
+            data.Positivos = PositivosCopy;
+            
+        }
+
         private Complex ElegirComplejo(Estrella estrella, Dictionary<int, RowData> positivos, Dictionary<int, RowData> negativos, LEF lef)
         {
 
-            //de momento para avanzar con el algoritmo me quedo con el primero del recubrimento...
+            List<Complex> ComplejosSeleccionados= new List<Complex>();
+            List<Complex> ComplejosSeleccionadosAux = new List<Complex>();
 
-            Complex cpx = estrella.Complexes.FirstOrDefault();
+            //para complejo en la estrella, rellenaremos el campo numeroEjemplosPositivos que cubre.
+            foreach (Complex complex in estrella.Complexes)
+            {
+                foreach (KeyValuePair<int, RowData> positivo in positivos)
+                {
+                    complex.NumeroEjemplosPositivos = complex.NumeroEjemplosPositivos + DescribeEjemploPositivo(complex, positivo.Value);
+                }
 
+                complex.CalculaCostTotal();
+            }
+            //evalua la covertura
+            ComplejosSeleccionadosAux = estrella.Complexes;
+            ComplejosSeleccionados = estrella.Complexes.Where(x => x.NumeroEjemplosPositivos >= lef.Cobertura).ToList();
+            if (ComplejosSeleccionados.Count == 0)
+                ComplejosSeleccionados = ComplejosSeleccionadosAux;
+
+            //evalua el costo para el desempate
+            ComplejosSeleccionadosAux = ComplejosSeleccionados;
+            if (ComplejosSeleccionados.Count >= 1)
+                ComplejosSeleccionados = ComplejosSeleccionados.Where(x => x.CostTotal <= lef.Cost).ToList();
+            if (ComplejosSeleccionados.Count == 0)
+                ComplejosSeleccionados = ComplejosSeleccionadosAux;
+
+            //evalua la simplicidad de la expresion para el desempate
+            ComplejosSeleccionadosAux = ComplejosSeleccionados;
+            if (ComplejosSeleccionados.Count >= 1)
+            ComplejosSeleccionados = ComplejosSeleccionados.Where(x => x.Expresiones.Count <= lef.NumeroExpresiones).ToList();
+                if (ComplejosSeleccionados.Count == 0)
+                    ComplejosSeleccionados = ComplejosSeleccionadosAux;
+           
+            //al final como nada nos asegura que no haya quedado uno solo, nos quedamos con el primero de los que quedan
+            Complex cpx = ComplejosSeleccionados.FirstOrDefault();
+           
             return cpx;
         }
 
@@ -96,10 +150,10 @@ namespace ConsoleApplicationAq
                         {
                             Complex cpx = new Complex();
                             cpx.Expresiones.Add(attribute);
-                            if(cpx.AddAttributes(complex,Lprima))
+                            if(cpx.AddAttributes(complex))
                             {
                                 //solo debe añadir sino existe ya en la lista: esto hace que se añadan tal vez en distinto orden...
-                                                                                              
+                               if(!cpx.ExistInList(Lprima))                                                                     
                                 Lprima.Add(cpx);
                             }                         
                         }
@@ -142,13 +196,11 @@ namespace ConsoleApplicationAq
                 }
                 Lprima = LprimaCopy;
                 //fin PASO 2
-
                 //hacemos esto porque no podemos recorrer una lista al mismo que tiempo que borramos elementos de ella.
                 LprimaAux = new Complex[Lprima.Count];
                 Lprima.ToArray().CopyTo(LprimaAux, 0);
                  LprimaCopy = LprimaAux.ToList();
                 //fin de lo que hacemos, que hay que mejorar, porque mete complejidad inecesaria al algoritmo y coste computaciones.
-
 
                 foreach (Complex complejo in Lprima)
                 {
@@ -165,25 +217,41 @@ namespace ConsoleApplicationAq
 
             } while (L.Count != 0) ;//esto nunca va pasar 
 
-
-
                 return estrella;  //devuelve una estrella o conjuntos de complejos
-
         }
 
-
-
-        private void DeleteComplex(List<Complex> Lprima)
+     
+        public int DescribeEjemploPositivo(Complex complejo, RowData positivo)
         {
+            
+                int contadorDeTrues = 0;
+                //para cada atributo del ejemplo positivo que ha recibido 
+                foreach (Attribute attribute in positivo.Attributes)
+                {
+                    //para los atributos que componen el complejo
+                    foreach (Attribute c in complejo.Expresiones)
+                    {
+                        //si ese atributo tiene el mismo nombre y el mismo valor
+                        if ((attribute.Name == c.Name) && (attribute.Value == c.Value))
+                        {
+                            //para que devuelva un true es fundamental que todos los atributos del complejo sean true
+                            contadorDeTrues = contadorDeTrues + 1;
 
-           
+                        }
+                    }
+                    //para que devuelva un true es fundamental que todos los atributos del complejo sean true
+                    if (complejo.Expresiones.Count == contadorDeTrues)
+                        return 1;
+
+                }
+
+            
+            return 0;
 
 
         }
 
-    
 
-      
         /// <summary>
         /// Devolvera true si el complejo describe a todos los casos negativos
         /// </summary>

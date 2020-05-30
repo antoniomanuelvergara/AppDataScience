@@ -23,10 +23,10 @@ namespace ConsoleApplicationAq
                 if ((Complexes.IndexOf(complex) + 1) == Complexes.Count)
                     sb.Append(complex.GetComplex());
                 else
-                    sb.Append(complex.GetComplex()+ " O ");
+                    sb.Append(complex.GetComplex()+ " o ");
 
             }
-
+            sb.Append(" entonces positivo");
             return sb.ToString();
         }
 
